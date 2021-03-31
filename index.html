@@ -22,185 +22,343 @@
       <div class="row">
         <div class="col-md-8">
           <div id="error"></div>
-          <form id="form" action="/" method="GET">
+          <form id="form">
             <div class="form-row">
-              <div class="col-6">
-                <label for="name"> Voornaam</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  placeholder="Uw voornaam"
-                  name="name"
-                />
-              </div>
-
-              <div class="col">
-                <label for="lastName">Naam</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastName"
-                  placeholder="Uw voornaam"
-                  name="name"
-                />
-              </div>
-
-              <div class="col-6">
-                <br />
-                <label for="username">Gebruikersnaam</label>
-                <label class="sr-only" id="username" for="inlineFormInputGroup"
-                  >u911236</label
-                >
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">@</div>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="inlineFormInputGroup"
-                    placeholder="u911236"
-                  />
-                </div>
-              </div>
-
-              <div class="col">
-                <br />
-                <label for="email">E-mailadres</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="email"
-                  placeholder="mail@example.be"
-                  name="last"
-                />
-              </div>
-
-              <div class="col-6">
-                <br />
-                <label for="password">Wachtwoord</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  minlength="8"
-                />
-                <small id="passwordHelpBlock" class="form-text text-muted">
-                  Je wachtwoord moet minstens 8 tekens lang zijn
-                </small>
-              </div>
-              <div class="col">
-                <br />
-                <label for="repeatPassword">Herhaal wachtwoord</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="repeatPassword"
-                />
-              </div>
-
-              <div class="col-12">
-                <br />
-                <label for="adress">Adres</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Uw adres en huisnummer"
-                  id="adress"
-                />
-              </div>
-
-              <div class="col-4">
-                <br />
-                <label for="inlineFormCustomSelectPref">Land</label>
-                <select class="custom-select my-1 mr-sm-2" id="country">
-                  <option selected>Kies een land</option>
-                </select>
-              </div>
-
-              <div class="col-4">
-                <br>
-                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Provincie</label>
-                <select class="custom-select my-1 mr-sm-2" id="province">
-                <option selected>Kies een provincie</option>
-            </select>
+            <div class="col-6">
+              <label for="name"> Voornaam</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Uw voornaam"
+                name="name"
+              />
             </div>
 
-            <div class="col-4">
-                <br>
-                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
-                    Postcode
-                </label>
-                <select class="custom-select my-1 mr-sm-2" id="postcode">
-                   
-                </select>
+            <div class="col">
+              <label for="lastname">Naam</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastname"
+                placeholder="Uw voornaam"
+                name="name"
+              />
+            </div>
+
+            <div class="col-6">
+              <br />
+              <label for="username">Gebruikersnaam</label>
+              <label class="sr-only" id="username" for="inlineFormInputGroup"
+                >u911236</label
+              >
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inlineFormInputGroup"
+                  placeholder="u911236"
+                />
+              </div>
+            </div>
+
+            <div class="col">
+              <br />
+              <label for="email">E-mailadres</label>
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                placeholder="mail@example.be"
+                name="last"
+              />
+            </div>
+
+            <div class="col-6">
+              <br />
+              <label for="password">Wachtwoord</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                minlength="8"
+              />
+              <small id="passwordHelpBlock" class="form-text text-muted">
+                Je wachtwoord moet minstens 8 tekens lang zijn
+              </small>
+            </div>
+            <div class="col">
+              <br />
+              <label for="repeatPassword">Herhaal wachtwoord</label>
+              <input type="password" class="form-control" id="repeatPassword" />
+            </div>
+
+            <div class="col-12">
+              <br />
+              <label for="adress">Adres</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Uw adres en huisnummer"
+                id="address"
+              />
+            </div>
+
+            <div class="col-lg-4">
+              <br />
+              <label for="inlineFormCustomSelectPref">Land</label>
+              <select class="custom-select my-1 mr-sm-2" id="country">
+                <option value="0" selected>Kies een land</option>
+                <option value="1">Canada</option>
+                <option value="2">VS</option>
+                <option value="3">België</option>
+                <option value="1">Nederland</option>
+              </select>
+            </div>
+
+            <div class="col-lg-4">
+              <br />
+              <label class="my-1 mr-2" for="inlineFormCustomSelectPref"
+                >Provincie</label
+              >
+              <select class="custom-select my-1 mr-sm-2" id="province">
+                <option value="0" selected>Kies een provincie</option>
+                <option value="1">Ontario</option>
+                <option value="2">Quebec</option>
+                <option value="3">British Columbia</option>
+                <option value="4">Nova Scotia</option>
+                <option value="5">Californië</option>
+                <option value="6">Texas</option>
+                <option value="7">New York</option>
+                <option value="8">Pennsylvania</option>
+                <option value="9">Antwerpen</option>
+                <option value="10">Limburg</option>
+                <option value="11">Luik</option>
+                <option value="12">Vlaams-brabant</option>
+                <option value="13">Noord-Brabant</option>
+                <option value="14">Utrecht</option>
+                <option value="15">Zuid-Holland</option>
+                <option value="16">Groningen</option>
+              </select>
+            </div>
+
+            <div class="col-lg-4">
+              <br />
+              <label class="my-2 mr-sm-2" for="postcodes">
+                Postcode
+              </label>
+              <input class="col-lg-8" type="number" name="postcodes" id="postcode" min="10" max="10000">
             </div>
             <div class="col-12">
-                  <hr> 
+              <hr />
             </div>
-          
-              <div class="col-6">
-               
-                  <br>
-                  <h4>Hou me op de hoogte</h4>
-                  <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="newsletter">
-                      <label class="form-check-label" for="newsletter">
-                          Inschrijven voor onze nieuwsbrief
-                      </label>
-                  </div>
-                  
-                  <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="agreeNewsletter">
-                      <label class="form-check-label" for="agreeNewsletter">
-                          Ik ga akkoord met de algemene voorwaarden.
-                      </label>
-                  </div>
+
+            <div class="col-6">
+              <br />
+              <h4>Hou me op de hoogte</h4>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="newsletter"
+                />
+                <label class="form-check-label" for="newsletter">
+                  Inschrijven voor onze nieuwsbrief
+                </label>
               </div>
 
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="agreeNewsletter"
+                />
+                <label class="form-check-label" for="agreeNewsletter">
+                  Ik ga akkoord met de algemene voorwaarden.
+                </label>
+              </div>
+            </div>
 
-
-
-              <div class="col-6">
-                  <br>
-                  <h4>Betaling</h4>
-                  <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="bankApp" value="option1">
-                      <label class="form-check-label" for="bankApp">
-                          Banking app
-                      </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="bankTransfer" value="option2">
-                    <label class="form-check-label" for="bankTransfer">
-                        Overschrijving
-                    </label>
+            <div class="col-6">
+              <br />
+              <h4>Betaling</h4>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="exampleRadios"
+                  id="bankApp"
+                  value="option1"
+                />
+                <label class="form-check-label" for="bankApp">
+                  Banking app
+                </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="visa" value="option1">
-                <label class="form-check-label" for="visa">
-                    Visa card
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="exampleRadios"
+                  id="bankTransfer"
+                  value="option2"
+                />
+                <label class="form-check-label" for="bankTransfer">
+                  Overschrijving
                 </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="paypal" value="option2">
-                    <label class="form-check-label" for="paypal">
-                        Paypal
-                    </label>
-                
-                    </div>
-                </div>
-            </form>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="exampleRadios"
+                  id="visa"
+                  value="option1"
+                />
+                <label class="form-check-label" for="visa"> Visa card </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="exampleRadios"
+                  id="paypal"
+                  value="option2"
+                />
+                <label class="form-check-label" for="paypal"> Paypal </label>
+              </div>
+            </div>
+          </form>
         </div>
-    </div>
+      </div>
 
-    <div class="col-lg-8 col-md-8 sm-8">
-        <br>
-        <button type="submit" class="btn btn-primary btn-block">Wave your magic wand</button>
-    </div>
+      <div class="col-lg-8 col-md-8 sm-8">
+        <br />
+        <button type="submit" class="btn btn-primary btn-block" id="submit">
+          Wave your magic wand
+        </button>
+      </div>
 
+      <div class="col-md-6 col-lg-4">
+        <div class="alert alert-danger" id="danger" role="alert">
+          <h4>Yikes,errors...</h4>
+        </div>
+        <div class="alert alert-success" id="success" role="alert">
+          <h4>Goed Gedaan!</h4>
+          <p>Aww yeah, je werd geregistreerd.</p>
+        </div>
+        <div class="alert alert-primary" id="primary" role="alert">
+          <h4>Betalingswijze</h4>
+        </div>
+      </div>
     </main>
 
+    <script>
+      // Het verbergen van de alerts kan je op 2 manieren doen. Je maakt als eerste een variabele dat gelinkt wordt met het id van de alert.
+
+      // 1) Daarna gebruik je .style zodat je de visibility kan aanpassen deze is nu op 'hidden' gezet wat betekent dat de alerts onzichtbaar zijn maar je ziet nog wel witte ruimte
+
+      // 2) Je kan ook de de display op 'none' zetten dan wordt deze niet weergegeven en je ziet ook geen wit ruimtes.
+      const alertDanger= document.querySelector("#danger");
+      alertDanger.style.visibility = "hidden";
+
+      const alertSuccess = document.querySelector("#success");
+      alertSuccess.style.visibility = "hidden";
+
+      const alertprimary = document.querySelector("#primary");
+      alertprimary.style.visibility = "hidden";
+      
+      const submit = document.querySelector('#submit');
+      const name = document.querySelector('#name');
+      const lastname = document.querySelector('#lastname');
+      const username = document.querySelector('#username');
+      const address = document.querySelector('#address');
+      const land = document.querySelector('#country');
+      const province = document.querySelector('#province');
+
+      const errors = [];
+
+      // "Het veld naam is vereist!","Het veld gebruikersnaam is vereist!","Het veld adres is vereist!","Het veld land is vereist!","Het veld provincie is vereist!"
+
+      submit.addEventListener('click', function() {
+      validateForm();
+      
+      });
+      function validateForm() {
+        const nameValue = name.value;
+        const lastnameValue = lastname.value;
+        const usernameValue = username.value;
+        const addressValue = address.value;
+        const landValue = land.value;
+        const provinceValue = province.value;
+
+        if (nameValue === '') {
+            // checkt of de value van het input veld voornaam leeg is
+          errors.push('Naam moet verplicht worden ingevuld!' +' ');
+          let p = document.createElement('p');
+          let n = document.createTextNode(errors);
+          alertDanger.appendChild(n);
+          alertDanger.style.visibility = "visible";
+          
+      } else {
+        alertDanger.style.visibility = "hidden";
+      }
+      if (lastnameValue === '') {
+        errors.push('Voornaam moet verplicht worden ingevuld!');
+        let p = document.createElement('p');
+          let n = document.createTextNode(errors);
+          alertDanger.appendChild(n);
+          alertDanger.style.visibility = "visible";
+      }else {
+        alertDanger.style.visibility = "hidden";
+      }
+
+      if (usernameValue === '') {
+        errors.push('Gebruikersnaam moet verplicht worden ingevuld!');
+        let p = document.createElement('p');
+          let n = document.createTextNode(errors);
+          alertDanger.appendChild(n);
+          alertDanger.style.visibility = "visible";
+      }else {
+        alertDanger.style.visibility = "hidden";
+      }
+      if (addressValue === '') {
+        errors.push('Addres moet verplicht worden ingevuld!');
+        let p = document.createElement('p');
+          let n = document.createTextNode(errors);
+          alertDanger.appendChild(n);
+          alertDanger.style.visibility = "visible";
+      }else {
+        alertDanger.style.visibility = "hidden";
+      }
+      if (landValue == 0) {
+        errors.push('Land moet verplicht worden ingevuld!');
+        let p = document.createElement('p');
+          let n = document.createTextNode(errors);
+          alertDanger.appendChild(n);
+          alertDanger.style.visibility = "visible";
+      }else {
+        alertDanger.style.visibility = "hidden";
+      }
+      if (provinceValue == 0) {
+        errors.push('Provincie moet verplicht worden ingevuld!');
+        let p = document.createElement('p');
+          let n = document.createTextNode(errors);
+          alertDanger.appendChild(n);
+          alertDanger.style.visibility = "visible";
+      }else {
+        alertDanger.style.visibility = "hidden";
+      }
+
+         
+   
+      }
+        
+      
+     
+
+    </script>
   </body>
 </html>
