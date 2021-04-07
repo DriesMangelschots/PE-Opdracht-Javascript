@@ -111,7 +111,7 @@
               <br />
               <label for="inlineFormCustomSelectPref">Land</label>
               <select class="custom-select my-1 mr-sm-2" id="country">
-                <option value="0" selected>Kies een land</option>
+                <option value="" selected>Kies een land</option>
                 <option value="1">Canada</option>
                 <option value="2">VS</option>
                 <option value="3">België</option>
@@ -125,7 +125,7 @@
                 >Provincie</label
               >
               <select class="custom-select my-1 mr-sm-2" id="province">
-                <option value="0" selected>Kies een provincie</option>
+                <option value="" selected>Kies een provincie</option>
                 <option value="1">Ontario</option>
                 <option value="2">Quebec</option>
                 <option value="3">British Columbia</option>
@@ -273,73 +273,129 @@
       const submit = document.querySelector('#submit');
       const name = document.querySelector('#name');
       const lastname = document.querySelector('#lastname');
-      const username = document.querySelector('#username');
+      const username = document.querySelector('#inlineFormInputGroup');
+      const email = document.querySelector('#email');
       const address = document.querySelector('#address');
       const land = document.querySelector('#country');
       const province = document.querySelector('#province');
-
-      const errors = ['Naam moet verplicht worden ingevuld!',
-      'Voornaam moet verplicht worden ingevuld!',
-      'Gebruikersnaam moet verplicht worden ingevuld!','Addres moet verplicht worden ingevuld!',
-      'Addres moet verplicht worden ingevuld!','Land moet verplicht worden ingevuld!',
-      'Provincie moet verplicht worden ingevuld!'
-      ];
-      let oneTimeError = true;
       
 
-      // "Het veld naam is vereist!","Het veld gebruikersnaam is vereist!","Het veld adres is vereist!","Het veld land is vereist!","Het veld provincie is vereist!"
+      // const errors = ['Naam moet verplicht worden ingevuld!',
+      // 'Voornaam moet verplicht worden ingevuld!',
+      // 'Gebruikersnaam moet verplicht worden ingevuld!','Addres moet verplicht worden ingevuld!',
+      // 'Addres moet verplicht worden ingevuld!','Land moet verplicht worden ingevuld!',
+      // 'Provincie moet verplicht worden ingevuld!'
+      // ];
+      
+      const errors = [];
+      let countError = 0;
+
+      const emailValue = email.value;
+
+    
+
+        submit.addEventListener('click', function() {
+ 
+          function validateForm() {
+
+        }
+        checkEmptyField();
+        validateEmail(emailValue);
+     
+     
+
+ });
+
+function checkEmptyField (veld,melding) {
+      const nameValue = name.value;
+      const lastnameValue = lastname.value;
+      const usernameValue = username.value;
+      const addressValue = address.value;
+      const landValue = land.value;
+      const provinceValue = province.value;
+
+
+  if (nameValue === '')  {
+  veld = nameValue;
+   melding = 'Voornaam moet verplicht worden ingevuld!';
+   errors.push(melding);
+   countError++;
+   console.log(countError);
+  
+  } 
+
+ if (lastnameValue === '') {
+   melding = 'Achternaam moet verplicht worden ingevuld!';
+   errors.push(melding);
+   countError++;
+   console.log(countError);
+   
+ }
+ if (usernameValue === '') {
+  melding = 'Gebruikersnaam moet verplicht worden ingevuld!';
+   errors.push(melding);
+   countError++;
+   console.log(countError);
+ 
+ }
+ if (addressValue === '') {
+  melding = 'Address moet verplicht worden ingevuld!';
+   errors.push(melding);
+   countError++;
+   console.log(countError);
+ }
+ if (landValue === "") {
+  melding = 'Land moet verplicht worden ingevuld!';
+   errors.push(melding);
+   countError++;
+   console.log(countError);
+ }
+ if (provinceValue === "") {
+  melding = 'Provincie moet verplicht worden ingevuld!';
+   errors.push(melding);
+   countError++;
+   console.log(countError);
+   
+ }
+
 
   
 
-      submit.addEventListener('click', function() {
+  
+  
+ 
+
+
+
+}   
+function validateEmail(emailadres) {
+    let posAtSign = emailValue.indexOf("@");
+    
+  
+
+    if(emailFormat.text(emailValue) ) {
+     console.log('email match');
       
-      function checkEmptyField (veld,melding) {
-        melding = `Het veld${veld} is vereist!`;
-        const nameValue = name.value;
-        const lastnameValue = lastname.value;
-        const usernameValue = username.value;
-        const addressValue = address.value;
-        const landValue = land.value;
-        const provinceValue = province.value;
-       if (nameValue === '') {
-         return melding;
-       }
-       if (lastnameValue === '') {
-         return melding;
-       }
-       if (usernameValue === '') {
-         return melding;
-       }
-       if (addressValue === '') {
-         return melding;
-       }
-       if (landValue === 0) {
-         return melding;
-       }
-       if (provinceValue === 0) {
-         return melding;
-       }
+    }else {
+      melding = 'E-mailadres is niet correct';
+      errors.push(melding);
+      VoegToeErrors();
+      console.log('email niet correct');
+    }
+  } 
 
 
 
-     }
-     function validateForm() {
-      
-       
-         let p = document.createElement('p');
-          let n = document.createTextNode(errors);
-          alertDanger.appendChild(n);
-          
-          alertDanger.style.visibility = "visible";
-          
-      }
-         
-      });
-     
-     
-      
-     
+function VoegToeErrors() {
 
+let p = document.createElement('p');
+let n = document.createTextNode(errors);
+alertDanger.appendChild(n);
+alertDanger.style.visibility = "visible";
+
+
+} 
+ 
     </script>
   </body>
 </html>
