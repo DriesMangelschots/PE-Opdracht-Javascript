@@ -289,22 +289,20 @@
       
       const errors = [];
       let countError = 0;
-
       const emailValue = email.value;
+  
 
     
 
         submit.addEventListener('click', function() {
  
           function validateForm() {
-
+          // validateEmail(emailValue);
+       
         }
         checkEmptyField();
-        validateEmail(emailValue);
-     
-     
+        // VoegToeErrors();  
 
- });
 
 function checkEmptyField (veld,melding) {
       const nameValue = name.value;
@@ -359,32 +357,42 @@ function checkEmptyField (veld,melding) {
  }
 
 
-  
-
-  
-  
- 
-
 
 
 }   
-function validateEmail(emailadres) {
-    let posAtSign = emailValue.indexOf("@");
-    
+
+   
   
 
-    if(emailFormat.text(emailValue) ) {
-     console.log('email match');
-      
-    }else {
-      melding = 'E-mailadres is niet correct';
-      errors.push(melding);
-      VoegToeErrors();
-      console.log('email niet correct');
-    }
-  } 
+// if(emailValue == emailValue) {
+
+//  melding = 'E-mailadres is niet correct';
+//   errors.push(melding);
+//   VoegToeErrors();
+//   console.log('email niet correct');
+
+//   return false;
+// }else {
+//   console.log('email match');
+//   return true;    
+// }
+
+   
+
+});
 
 
+// function validateEmail(emailadres) {
+
+//  let controleerEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+//  if ( email.value.match(controleerEmail)) {
+//    console.log('e-mail');
+//     return true;
+//  }else {
+//    return false;
+//  }
+
+// } 
 
 function VoegToeErrors() {
 
@@ -395,6 +403,7 @@ alertDanger.style.visibility = "visible";
 
 
 } 
+
  
     </script>
   </body>
