@@ -150,7 +150,7 @@
               <label class="my-2 mr-sm-2" for="postcodes">
                 Postcode
               </label>
-              <input class="col-lg-8" type="number" name="postcodes" id="postcode" min="10" max="10000">
+              <input class="col-lg-8" type="number" name="postcodes" id="postcode">
             </div>
             <div class="col-12">
               <hr />
@@ -174,15 +174,15 @@
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  id="agreeNewsletter"
+                  id="agreeRequirements"
                 />
-                <label class="form-check-label" for="agreeNewsletter">
+                <label class="form-check-label" for="agreeRequirements">
                   Ik ga akkoord met de algemene voorwaarden.
                 </label>
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-6" id="radiobuttons">
               <br />
               <h4>Betaling</h4>
               <div class="form-check">
@@ -190,8 +190,8 @@
                   class="form-check-input"
                   type="radio"
                   name="exampleRadios"
-                  id="bankApp"
-                  value="option1"
+                  id="BankingApp"
+                  value="1"
                 />
                 <label class="form-check-label" for="bankApp">
                   Banking app
@@ -202,8 +202,8 @@
                   class="form-check-input"
                   type="radio"
                   name="exampleRadios"
-                  id="bankTransfer"
-                  value="option2"
+                  id="Overschrijving"
+                  value="2"
                 />
                 <label class="form-check-label" for="bankTransfer">
                   Overschrijving
@@ -214,8 +214,8 @@
                   class="form-check-input"
                   type="radio"
                   name="exampleRadios"
-                  id="visa"
-                  value="option1"
+                  id="Visa"
+                  value="3"
                 />
                 <label class="form-check-label" for="visa"> Visa card </label>
               </div>
@@ -224,8 +224,8 @@
                   class="form-check-input"
                   type="radio"
                   name="exampleRadios"
-                  id="paypal"
-                  value="option2"
+                  id="Paypal"
+                  value="4"
                 />
                 <label class="form-check-label" for="paypal"> Paypal </label>
               </div>
@@ -279,19 +279,17 @@
       const land = document.querySelector('#country');
       const province = document.querySelector('#province');
       
+      const postcode = document.querySelector('#postcode');
 
-      // const errors = ['Naam moet verplicht worden ingevuld!',
-      // 'Voornaam moet verplicht worden ingevuld!',
-      // 'Gebruikersnaam moet verplicht worden ingevuld!','Addres moet verplicht worden ingevuld!',
-      // 'Addres moet verplicht worden ingevuld!','Land moet verplicht worden ingevuld!',
-      // 'Provincie moet verplicht worden ingevuld!'
-      // ];
+      const radiobuttons = document.querySelector('#radiobuttons');
+     
       
       const errors = [];
       let countError = 0;
+      let clicks = 0;
       const emailValue = email.value;
   
-
+   
     
 
         submit.addEventListener('click', function() {
@@ -301,20 +299,27 @@
        
         }
         checkEmptyField();
-        // VoegToeErrors();  
+        validatePayment(radiobuttons);
+        checkPc();
+        checkAlgemeneVoorwaarden();
+        VoegToeErrors();  
 
 
 function checkEmptyField (veld,melding) {
+
       const nameValue = name.value;
       const lastnameValue = lastname.value;
       const usernameValue = username.value;
       const addressValue = address.value;
-      const landValue = land.value;
+      const landValue = country.value;
       const provinceValue = province.value;
+
+    
+
 
 
   if (nameValue === '')  {
-  veld = nameValue;
+   
    melding = 'Voornaam moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
@@ -337,23 +342,30 @@ function checkEmptyField (veld,melding) {
  
  }
  if (addressValue === '') {
-  melding = 'Address moet verplicht worden ingevuld!';
+  melding = 'Addres moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
    console.log(countError);
  }
- if (landValue === "") {
+ if (landValue === '') {
   melding = 'Land moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
    console.log(countError);
  }
- if (provinceValue === "") {
+ if (provinceValue === '') {
   melding = 'Provincie moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
    console.log(countError);
    
+ } 
+ 
+
+  
+ if (countError === 0) {
+  alertDanger.style.display = "none";
+  console.log('countError');
  }
 
 
@@ -403,6 +415,68 @@ alertDanger.style.visibility = "visible";
 
 
 } 
+function validatePayment(veld) {
+
+  const bankingApp = document.querySelector('#BankingApp');
+  const overschrijving = document.querySelector('#Overschrijving');
+  const visa = document.querySelector('#Visa');
+  const paypal = document.querySelector('#Paypal');
+if (bankingApp.checked === true) {   
+  checkedValue = bankingApp.value; 
+  console.log("gelukt");
+  
+  let p = document.createElement('p');
+  let n = document.createTextNode('Je betalingswijze is BankingApp');
+  alertprimary.appendChild(n);
+  alertprimary.style.visibility = "visible";
+}
+if (overschrijving.checked === true) {
+  checkedValue = overschrijving.value;
+  let p = document.createElement('p');
+  let n = document.createTextNode('Je betalingswijze is Overschrijving');
+  alertprimary.appendChild(n);
+  alertprimary.style.visibility = "visible";
+}
+
+if (visa.checked === true) {
+   checkedValue = visa.value;
+   let p = document.createElement('p');
+   let n = document.createTextNode('Je betalingswijze is Visa');
+   alertprimary.appendChild(n);
+   alertprimary.style.visibility = "visible";
+}
+
+if (paypal.checked === true) {
+  checkedValue = paypal.value;
+  let p = document.createElement('p');
+  let n = document.createTextNode('Je betalingswijze is paypal');
+  alertprimary.appendChild(n);
+  alertprimary.style.visibility = "visible";
+  
+}
+
+
+
+
+}
+function checkPc(veld) {
+  const postcodeValue = postcode.value;
+  let melding = '';
+  if (postcodeValue === '') {
+    melding = 'Postcode moet verplicht worden ingevuld!';
+    errors.push(melding);
+  } if (postcodeValue < 1000 || postcodeValue > 9999) {
+    melding = 'De waarde van potcode moet tussen 1000 en  9999 liggen';
+    errors.push(melding);  
+  }
+}
+function checkAlgemeneVoorwaarden () {
+
+  if (!agreeRequirements.checked) {
+    melding = 'Je moet de algemene voorwaarden accepteren';
+    errors.push(melding);  
+  }
+}
 
  
     </script>
