@@ -261,6 +261,8 @@
       // 1) Daarna gebruik je .style zodat je de visibility kan aanpassen deze is nu op 'hidden' gezet wat betekent dat de alerts onzichtbaar zijn maar je ziet nog wel witte ruimte
 
       // 2) Je kan ook de de display op 'none' zetten dan wordt deze niet weergegeven en je ziet ook geen wit ruimtes.
+
+      // Id's omzetten naar variablen
       const alertDanger= document.querySelector("#danger");
       alertDanger.style.visibility = "hidden";
 
@@ -278,164 +280,214 @@
       const address = document.querySelector('#address');
       const land = document.querySelector('#country');
       const province = document.querySelector('#province');
-      
+      const password = document.querySelector('#password');
+      const repeatPassword = document.querySelector('#repeatPassword');
       const postcode = document.querySelector('#postcode');
 
       const radiobuttons = document.querySelector('#radiobuttons');
      
-      
-      const errors = [];
-      let countError = 0;
-      let clicks = 0;
       const emailValue = email.value;
-  
-   
-    
+      // Array errors waar alle errors worden bijgehouden deze is nu nog leeg
+      const errors = [];
 
+      let countError = 0;
+      let countPayment = 0;
+  
         submit.addEventListener('click', function() {
  
           function validateForm() {
-          // validateEmail(emailValue);
-       
+      
         }
+       countError = 0;
         checkEmptyField();
         validatePayment(radiobuttons);
+        validateEmail(emailValue);
         checkPc();
         checkAlgemeneVoorwaarden();
+        PasswordValidation();
         VoegToeErrors();  
-
+        VoegToeSucces(countError);
 
 function checkEmptyField (veld,melding) {
-
+// Neem de naam, achternaam, gebruikersnaam, address, land en provincie en pak hier de value van het input veld en zet deze in een variable
       const nameValue = name.value;
       const lastnameValue = lastname.value;
       const usernameValue = username.value;
       const addressValue = address.value;
       const landValue = country.value;
       const provinceValue = province.value;
-
-    
-
-
-
+// Kijkt of naam leeg is -> melding naar array zetten
   if (nameValue === '')  {
    
    melding = 'Voornaam moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
-   console.log(countError);
+   
   
   } 
-
+// Kijkt of achternaam leeg is -> melding naar array zetten
  if (lastnameValue === '') {
    melding = 'Achternaam moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
-   console.log(countError);
+   
    
  }
+ // Kijkt of gebruikers leeg is -> melding naar array zetten
  if (usernameValue === '') {
   melding = 'Gebruikersnaam moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
-   console.log(countError);
+   
  
  }
+ // Kijkt of adres leeg is -> melding naar array zetten
  if (addressValue === '') {
   melding = 'Addres moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
-   console.log(countError);
+   
  }
+ // Kijkt of land leeg is -> melding naar array zetten
  if (landValue === '') {
   melding = 'Land moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
-   console.log(countError);
+   
  }
+ // Kijkt of provincie leeg is -> melding naar array zetten
  if (provinceValue === '') {
   melding = 'Provincie moet verplicht worden ingevuld!';
    errors.push(melding);
    countError++;
-   console.log(countError);
    
- } 
- 
+   
+ }
+ // Kijkt of totale aantal errors = 0  
+ // Zet de alert op onzichtbaar
 
-  
  if (countError === 0) {
   alertDanger.style.display = "none";
-  console.log('countError');
+
  }
 
-
-
-
 }   
+// Neemt de value van paswoord en herhaal paswoord en steekt deze in een variable
 
+function PasswordValidation() {
+  let melding = '';
+  const passwordValue = password.value;
+  const repeatPasswordValue = repeatPassword.value;
    
+// Kijkt of het paswoord niet leeg is anders kijkt het of het paswoord langer dan 7 tekens bevat
+  if (passwordValue === '' ){
+   melding = 'Het veld wachtwoord is vereist!';
+   errors.push(melding);
+   countError++;
+ 
+   }  else {
+     if (passwordValue.length < 8) {
+       melding = 'Je wachtwoord moet minstens 8 tekens lang zijn';
+       errors.push(melding);
+       countError++;
+       
+     }
+
+  }
+  // Kijkt of het herhaal paswoord niet leeg is
+  if (repeatPasswordValue === '' ) {
+   melding = 'Het veld herhaal wachtwoord is vereist!';
+   errors.push(melding);
+   countError++;
   
-
-// if(emailValue == emailValue) {
-
-//  melding = 'E-mailadres is niet correct';
-//   errors.push(melding);
-//   VoegToeErrors();
-//   console.log('email niet correct');
-
-//   return false;
-// }else {
-//   console.log('email match');
-//   return true;    
-// }
-
+  } 
+ 
+}
    
-
 });
+  
+// https://www.w3resource.com/javascript/form/email-validation.php
+// Kijkt of de syntax van het emailadres klopt
+function validateEmail(emailadres) {
+ let melding = 'E-mailadres is niet correct';
+ // Variable maken van de syntax die nodig is om tot een succesvolle email validatie te bekomen
 
+ // 1) Bij het eerste deel van het email adres(gebruikersnaam) hoofdletters en kleine letters van a-z, A-Z ,de cijfers van 0 tot en met 9
+ // ! # $ % & ' * + - / = ? ^ _ ` { | } ~  voorkomt en een . dat niet als eerste of als laatste in het stukje van de gebruikersnaam van het email adres voorkomt
 
-// function validateEmail(emailadres) {
+ // 2) Het domein naam bestaat uit letters van a-z , A-Z en uit cijfers van 0-9 en een .(punt)
+ let controleerEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+ // Kijkt of het emailadres (die is ingegeven door de user) klopt met de syntax van controleerEmail
+ if ( email.value.match(controleerEmail)) {
 
-//  let controleerEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-//  if ( email.value.match(controleerEmail)) {
-//    console.log('e-mail');
-//     return true;
-//  }else {
-//    return false;
-//  }
+    return true;
+ }else {
+   errors.push(melding);
+   countError++;
+   return false;
+ }
 
-// } 
+} 
 
+// Als het aantal errors groter dan 0 is dan laat het al de errors zien
+// Anders wordt het alert verborgen
 function VoegToeErrors() {
+  if (countError > 0) {
+    let p = document.createElement('p');
+    let n = document.createTextNode(errors);
+    alertDanger.appendChild(n);
+    alertDanger.style.visibility = "visible";
+  } else {
+    alertDanger.style.visibility = "hidden";
+  }
 
-let p = document.createElement('p');
-let n = document.createTextNode(errors);
-alertDanger.appendChild(n);
-alertDanger.style.visibility = "visible";
+
 
 
 } 
+// Als het aantal errors 0 is dan wordt het succes en betaal scherm getoond
+// Anders blijft deze verbergt
+function VoegToeSucces(aantalErrors) {
+  if (aantalErrors == 0) {
+    alertSuccess.style.visibility = "visible";
+    alertprimary.style.visibility = "visible";
+   
+  } else {
+    alertSuccess.style.visibility = "hidden";
+    alertprimary.style.visibility = "hidden";
+  
+  }
+
+ 
+}
+// https://www.javatpoint.com/how-to-check-a-radio-button-using-javascript
+
+//Maakt eerst variabelen van bankingapp,overschrijving,visa en paypal
+
 function validatePayment(veld) {
+  let tellerBetalingswijze = 0;
 
   const bankingApp = document.querySelector('#BankingApp');
   const overschrijving = document.querySelector('#Overschrijving');
   const visa = document.querySelector('#Visa');
   const paypal = document.querySelector('#Paypal');
+  // Kijkt of één van deze radiobuttons is gechekt
+  // Als dit waar is dan wordt het bericht met de betaalwijze in het alert gestoken
 if (bankingApp.checked === true) {   
   checkedValue = bankingApp.value; 
-  console.log("gelukt");
+  
   
   let p = document.createElement('p');
   let n = document.createTextNode('Je betalingswijze is BankingApp');
   alertprimary.appendChild(n);
-  alertprimary.style.visibility = "visible";
+ 
 }
 if (overschrijving.checked === true) {
   checkedValue = overschrijving.value;
   let p = document.createElement('p');
   let n = document.createTextNode('Je betalingswijze is Overschrijving');
   alertprimary.appendChild(n);
-  alertprimary.style.visibility = "visible";
+  
 }
 
 if (visa.checked === true) {
@@ -443,42 +495,61 @@ if (visa.checked === true) {
    let p = document.createElement('p');
    let n = document.createTextNode('Je betalingswijze is Visa');
    alertprimary.appendChild(n);
-   alertprimary.style.visibility = "visible";
+   
 }
 
 if (paypal.checked === true) {
+  
   checkedValue = paypal.value;
-  let p = document.createElement('p');
-  let n = document.createTextNode('Je betalingswijze is paypal');
-  alertprimary.appendChild(n);
-  alertprimary.style.visibility = "visible";
+  if (countPayment === 0) {
+    let p = document.createElement('p');
+    let n = document.createTextNode('Je betalingswijze is paypal');
+    alertprimary.appendChild(n);
+    countPayment++;
+
+  }
+
+  
   
 }
-
-
+// Als er niet is aangeduidt dan wordt er een melding naar de errors array gemaakt
+// Error + 1 bij het totale aantal errors
+if (!bankingApp.checked && !overschrijving.checked && !visa.checked && !paypal.checked) {
+  let melding = 'Vink een betaling aan!';
+  errors.push(melding);
+  countError++;
+}
 
 
 }
+// Kijkt of postcode niet leeg is en de waarde tussen de 1000 en 9999 ligt
+// Anders wordt er een melding naar de errors array gemaakt
+// Error + 1 bij het totale aantal errors
 function checkPc(veld) {
   const postcodeValue = postcode.value;
   let melding = '';
   if (postcodeValue === '') {
     melding = 'Postcode moet verplicht worden ingevuld!';
     errors.push(melding);
+    countError++;
   } if (postcodeValue < 1000 || postcodeValue > 9999) {
-    melding = 'De waarde van potcode moet tussen 1000 en  9999 liggen';
+    melding = 'De waarde van potcode moet tussen 1000 en  9999 liggen!';
     errors.push(melding);  
+    countError++;
   }
 }
+// Kijkt of algemene voorwaarden werden aangeduid in de checkbox
+// Als dat niet zo is dan wordt er een melding naar de errors array gemaakt
+// Error + 1 bij het totale aantal errors
 function checkAlgemeneVoorwaarden () {
 
   if (!agreeRequirements.checked) {
-    melding = 'Je moet de algemene voorwaarden accepteren';
+    melding = 'Je moet de algemene voorwaarden accepteren!';
     errors.push(melding);  
+    countError++;
   }
 }
 
- 
     </script>
   </body>
 </html>
